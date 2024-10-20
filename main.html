@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Baby Vannie</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #6a0dad;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      color: white;
+      padding: 5px;
+    }
+
+    .message {
+      font-size: 2rem;
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    .heart {
+      font-size: 2.5rem;
+      color: red;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards, glow 1.5s ease-in-out infinite 2s;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+      }
+      50% {
+        text-shadow: 0 0 20px yellow, 0 0 30px red, 0 0 40px red;
+      }
+      100% {
+        text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+      }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 50px;
+      height: 75px;
+      background-color: #ffcccc;
+      border-radius: 50%;
+      animation: floatBalloon 6s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; /* Rope position */
+      left: 50%;
+      width: 2px;
+      height: 40px;
+      background-color: white; /* Rope is now white */
+      transform: translateX(-50%);
+    }
+
+    .balloon:nth-child(odd) {
+      background-color: #ffeb3b;
+    }
+
+    .balloon:nth-child(even) {
+      background-color: #ff6f91;
+    }
+
+    /* Simpler Cake Design */
+    .cake {
+      width: 120px;
+      height: 80px;
+      background-color: #ffe0b2;
+      margin: 30px auto 0;
+      position: relative;
+      border-radius: 10px;
+      z-index: 2;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .cake::before {
+      content: '';
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 25px;
+      background-color: #ff5722;
+      border-radius: 10px;
+    }
+
+    .cake::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 5px;
+      height: 5px;
+      background-color: yellow;
+      border-radius: 50%;
+    }
+
+    .final-message {
+      font-size: 1.5rem;
+      opacity: 0;
+      display: none;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .confetti {
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      position: absolute;
+      top: -20px;
+      animation: fall 4s linear infinite;
+    }
+
+    .confetti:nth-child(2n) {
+      background-color: pink;
+    }
+
+    .confetti:nth-child(3n) {
+      background-color: yellow;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatBalloon {
+      0% {
+        bottom: -150px;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive Design */
+    @media only screen and (max-width: 600px) {
+      .message {
+        font-size: 1.5rem;
+      }
+
+      .heart {
+        font-size: 2rem;
+      }
+
+      .cake {
+        width: 100px;
+        height: 70px;
+      }
+
+      .cake::before {
+        top: -20px;
+        width: 6px;
+        height: 20px;
+      }
+
+      .balloon {
+        width: 40px;
+        height: 60px;
+      }
+
+      .final-message {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="message">Happy Birthday! Baby Vannie </div>
+    <span class="heart">❤️</span>
+    <div class="cake"></div>
+    <br>
+    <div class="final-message">I love you so much!</div>
+  </div>
+
+  <!-- Confetti -->
+  <div class="confetti" style="left: 20%;"></div>
+  <div class="confetti" style="left: 50%;"></div>
+  <div class="confetti" style="left: 70%;"></div>
+  <div class="confetti" style="left: 90%;"></div>
+
+  <!-- Balloons -->
+  <div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="balloon" style="left: 30%; animation-delay: 1s;"></div>
+  <div class="balloon" style="left: 50%; animation-delay: 2s;"></div>
+  <div class="balloon" style="left: 70%; animation-delay: 0.5s;"></div>
+  <div class="balloon" style="left: 90%; animation-delay: 1.5s;"></div>
+
+  <script>
+    // Function to create random balloon and confetti effects
+    const numConfetti = 20; // Number of confetti
+    const container = document.body;
+    
+    // Add random confetti pieces
+    for (let i = 0; i < numConfetti; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + '%'; // Random horizontal position
+      confetti.style.animationDelay = Math.random() * 3 + 's'; // Random delay for falling confetti
+      confetti.style.backgroundColor = i % 2 === 0 ? 'yellow' : 'pink'; // Alternate confetti colors
+      container.appendChild(confetti);
+    }
+
+    setTimeout(function() {
+      document.querySelector('.final-message').style.display = 'block';
+      document.querySelector('.final-message').style.animation = 'fadeIn 2s ease forwards';
+    }, 6000); // Shows the final message after 6 seconds
+  </script>
+</body>
+</html>
